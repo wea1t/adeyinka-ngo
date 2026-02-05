@@ -363,7 +363,25 @@
         }
 
         .guest-navbar .nav-link:hover {
-            color: #0d6efd;
+            color: #6f42c1;
+        }
+
+        /* Active nav/link styles: primary background matching logo color */
+        .guest-navbar .nav-link.active,
+        .guest-navbar .dropdown-toggle.active {
+            background: #6f42c1;
+            color: #fff !important;
+            font-weight: 700;
+            border-radius: 8px;
+        }
+
+        .guest-navbar .dropdown-menu .dropdown-item.active {
+            background: #6f42c1;
+            color: #fff;
+        }
+
+        .sidebar a.active {
+            background-color: rgba(255,255,255,0.12);
         }
 
         .guest-navbar .btn-primary {
@@ -390,6 +408,45 @@
         .guest-hero .btn {
             min-width: 140px;
         }
+
+        /* Toggle between full and short nav link labels
+           full-text: shown on small (responsive) screens
+           short-text: shown on md and larger screens */
+        .nav-label .short-text { display: none; }
+        .nav-label .full-text { display: inline; }
+        @media (min-width: 768px) {
+            .nav-label .short-text { display: inline; }
+            .nav-label .full-text { display: none; }
+        }
+
+        /* Contact pill (email + bank) */
+        .contact-pill {
+            background: #ffffff;
+            border: 1px solid rgba(16,24,40,0.06);
+            padding: 8px 12px;
+            border-radius: 999px;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            font-weight:600;
+            color:#374151;
+        }
+
+        .donate-section {
+            background: linear-gradient(90deg,#ffffff,#f7fffb);
+            border-radius:12px;
+            padding:18px;
+            box-shadow: 0 6px 18px rgba(15,23,42,0.04);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            margin-bottom:18px;
+        }
+
+        .donate-details { display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+
+        .donate-cta .btn-primary { background:#6f42c1;border-color:#6f42c1 }
 
         @media (max-width: 576px) {
             .guest-hero {
@@ -539,7 +596,12 @@
 
     <div class="app-wrapper {{ !auth()->check() ? 'guest-layout' : '' }}">
 
-        @php $isAuth = auth()->check(); @endphp
+            @php
+            $isAuth = auth()->check();
+            $officialEmail = env('OFFICIAL_EMAIL', 'renewedmuslimfaith@gmail.com');
+            // strip bracketed items (e.g. (RMFF)) for cleaner display
+            $bankDetails = preg_replace('/\s*\(.*?\)\s*/', '', env('BANK_DETAILS', 'Example Bank - Acc: 00000000'));
+        @endphp
 
         {{-- mobile toggle removed from here; it's rendered inside main content to avoid left spacing --}}
 
@@ -550,10 +612,10 @@
                 <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="height:36px;width:auto"> 
                 <strong style="color:#fff">{{ config('app.name', 'Renewed Muslim Faith') }}</strong>
             </div>
-            <a href="{{ route('home') }}"><i class="bi bi-house-fill"></i><span>Home</span></a>
-            <a href="{{ route('about.us') }}"><i class="bi bi-info-circle"></i><span>About</span></a>
-            <a href="{{ route('what.we.do') }}"><i class="bi bi-lightbulb-fill"></i><span>What We Do</span></a>
-            <a href="{{ route('donate.form') }}"><i class="bi bi-cash-stack"></i><span>Donate</span></a>
+            <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}"><i class="bi bi-house-fill"></i><span>Home</span></a>
+            <a href="{{ route('about.us') }}" class="{{ request()->routeIs('about.us') ? 'active' : '' }}"><i class="bi bi-info-circle"></i><span>About</span></a>
+            <a href="{{ route('what.we.do') }}" class="{{ request()->routeIs('what.we.do') ? 'active' : '' }}"><i class="bi bi-lightbulb-fill"></i><span>What We Do</span></a>
+            <a href="{{ route('donate.form') }}" class="{{ request()->routeIs('donate.form') ? 'active' : '' }}"><i class="bi bi-cash-stack"></i><span>Donate</span></a>
 
             <div class="sidebar-dropdown">
                 <a class="dropdown-toggle-custom" href="#"><i class="bi bi-building"></i><span>Organizations</span></a>
@@ -563,11 +625,26 @@
                 </div>
             </div>
 
-            <a href="{{ route('profile.show') }}"><i class="bi bi-person-circle"></i><span>Profile</span></a>
-            <a href="{{ route('search') }}"><i class="bi bi-search"></i><span>Search</span></a>
-            <a href="{{ route('contact.us') }}"><i class="bi bi-envelope-fill"></i><span>Contact</span></a>
+            <a href="{{ route('profile.show') }}" class="{{ request()->routeIs('profile.show') ? 'active' : '' }}"><i class="bi bi-person-circle"></i><span>Profile</span></a>
+            <a href="{{ route('search') }}" class="{{ request()->routeIs('search') ? 'active' : '' }}"><i class="bi bi-search"></i><span>Search</span></a>
+            <a href="{{ route('contact.us') }}" class="{{ request()->routeIs('contact.us') ? 'active' : '' }}"><i class="bi bi-envelope-fill"></i><span>Contact</span></a>
 
             @if (auth()->user()?->name)
+                <div class="sidebar-contact p-3" style="position:relative;">
+                    <div class="text-white small mb-2">
+                        <span class="contact-pill" style="background:rgba(255,255,255,0.06);color:#fff;border:0;padding:6px 10px;">
+                            <i class="bi bi-envelope-fill"></i>
+                            <a href="mailto:{{ $officialEmail }}" style="color:inherit;text-decoration:underline;margin-left:6px">{{ $officialEmail }}</a>
+                        </span>
+                    </div>
+                    <div class="text-white small">
+                        <span class="contact-pill" style="background:rgba(255,255,255,0.06);color:#fff;border:0;padding:6px 10px;">
+                            <i class="bi bi-bank2"></i>
+                            <span style="margin-left:6px">{{ $bankDetails }}</span>
+                        </span>
+                    </div>
+                </div>
+
                 <div class="logout-fixed">
                     <form method="POST" action="/logout">
                         @csrf
@@ -593,17 +670,58 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="topNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('about.us') }}">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('contact.us') }}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('donate.form') }}">Donate</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('ngo.form') }}">NGOs</a></li>
+                    <!-- Mobile: show full list (visible on small screens inside collapse) -->
+                    <ul class="navbar-nav d-block d-md-none mb-2">
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('about.us') ? 'active' : '' }}" href="{{ route('about.us') }}">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('who.we.are') ? 'active' : '' }}" href="{{ route('who.we.are') }}">Who We Are</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('our.team') ? 'active' : '' }}" href="{{ route('our.team') }}">Our Team</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('our.impact') ? 'active' : '' }}" href="{{ route('our.impact') }}">Our Impact</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('what.we.do') ? 'active' : '' }}" href="{{ route('what.we.do') }}">What We Do (Our Story)</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('mentorship') ? 'active' : '' }}" href="{{ route('mentorship') }}">Mentorship & Counselling</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('matchmaking') ? 'active' : '' }}" href="{{ route('matchmaking') }}">Matchmaking</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('donate.form') ? 'active' : '' }}" href="{{ route('donate.form') }}">Be a Life Saver (Donate)</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact.us') ? 'active' : '' }}" href="{{ route('contact.us') }}">Contact Us</a></li>
                     </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2" href="{{ route('register.show') }}">Get Started</a></li>
+
+                    <!-- Desktop: group related items into two dropdowns (visible md+) -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-md-flex align-items-center">
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('about.us') ? 'active' : '' }}" href="{{ route('about.us') }}">About Us</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs('who.we.are') || request()->routeIs('our.team') || request()->routeIs('our.impact') ? 'active' : '' }}" href="#" id="orgsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Organizations
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="orgsDropdown">
+                                <li><a class="dropdown-item {{ request()->routeIs('who.we.are') ? 'active' : '' }}" href="{{ route('who.we.are') }}">Who We Are</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('our.team') ? 'active' : '' }}" href="{{ route('our.team') }}">Our Team</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('our.impact') ? 'active' : '' }}" href="{{ route('our.impact') }}">Our Impact</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ request()->routeIs('what.we.do') || request()->routeIs('mentorship') || request()->routeIs('matchmaking') ? 'active' : '' }}" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                <li><a class="dropdown-item {{ request()->routeIs('what.we.do') ? 'active' : '' }}" href="{{ route('what.we.do') }}">What We Do (Our Story)</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('mentorship') ? 'active' : '' }}" href="{{ route('mentorship') }}">Mentorship & Counselling</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('matchmaking') ? 'active' : '' }}" href="{{ route('matchmaking') }}">Matchmaking</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('donate.form') ? 'active' : '' }}" href="{{ route('donate.form') }}">Be a Life Saver (Donate)</a></li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('contact.us') ? 'active' : '' }}" href="{{ route('contact.us') }}">Contact Us</a></li>
                     </ul>
+                            <div class="d-flex align-items-center ms-auto gap-3">
+                                <div class="d-none d-md-block">
+                                    <a href="mailto:{{ $officialEmail }}" class="text-decoration-none text-muted">{{ $officialEmail }}</a>
+                                </div>
+                                <div>
+                                    <a href="{{ route('donate.form') }}" class="btn btn-primary btn-sm">Donate</a>
+                                </div>
+                            </div>
                 </div>
             </div>
         </nav>
@@ -623,6 +741,18 @@
 
             @yield('content')
 
+            <div class="container">
+                <div class="donate-section">
+                    <div class="donate-details">
+                        <div><strong>Bank:</strong>&nbsp;{{ $bankDetails }}</div>
+                        <div><strong>Email:</strong>&nbsp;<a href="mailto:{{ $officialEmail }}">{{ $officialEmail }}</a></div>
+                    </div>
+                    <div class="donate-cta">
+                        <a href="{{ route('donate.form') }}" class="btn btn-primary">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+
             <footer class="site-footer">
                 <div class="footer-inner">
 
@@ -636,7 +766,12 @@
                         <a href="/donation">Donate</a>
                     </div>
 
-                    <div class="footer-copy">
+                    <div class="d-flex flex-column align-items-center mt-3">
+                        <div class="mb-2"><strong>Email:</strong> <a href="mailto:{{ $officialEmail }}">{{ $officialEmail }}</a></div>
+                        <div><strong>Bank:</strong> {{ $bankDetails }}</div>
+                    </div>
+
+                    <div class="footer-copy mt-3">
                         © {{ date('Y') }} Renewed Muslim Faith. All rights reserved.
                     </div>
 

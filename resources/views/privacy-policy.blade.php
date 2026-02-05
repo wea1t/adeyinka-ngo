@@ -10,7 +10,7 @@
     <p class="text-muted">Last updated: {{ date('F d, Y') }}</p>
 
     <p>
-        Renewed Muslim Faith Foundation (RMFF) values your privacy. This policy explains what
+        Renewed Muslim Faith Foundation values your privacy. This policy explains what
         data we collect, how we use it, and the choices you have. By using our website you
         agree to the practices described here.
     </p>

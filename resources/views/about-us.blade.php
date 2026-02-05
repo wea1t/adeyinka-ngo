@@ -20,7 +20,7 @@
                 <img src="{{ asset('images/about/banner1.jpeg') }}" class="img-fluid rounded shadow" alt="RMFF Community">
             </div>
             <div class="col-md-6">
-                <h3 class="fw-bold">Renewed Muslim Faith Foundation (RMFF)</h3>
+                <h3 class="fw-bold">Renewed Muslim Faith Foundation</h3>
                 <p>
                     Renewed Muslim Faith Foundation is a deeply heartfelt, faith-based non-profit organization born from tears, love, and an unbreakable commitment to the Ummah. We are dedicated to renewing spiritual consciousness that once burned brightly in hearts, strengthening moral values that guide every step, and tenderly uplifting the well-being of individuals, families, and entire communities who have felt forgotten, weary, or lost.
 Rooted in the pure, timeless light of Islam, we bridge the sacred space between sincere iman and compassionate, life-changing action. We see the silent struggles that weigh on souls: the quiet fading of salah in busy lives, the vulnerability of our youth drifting toward confusion and temptation, the fragile threads of family bonds straining under hardship and misunderstanding, the aching loneliness of widows carrying burdens alone, the innocent eyes of orphans searching for a sense of belonging, and the underserved communities crying out for hope, dignity, and a helping hand that truly cares.
@@ -125,7 +125,7 @@ Youth empowerment initiatives — Wrapping our young ones in love, purpose, and 
     <div class="container">
         <h3 class="fw-bold text-center mb-4">Who We Are</h3>
         <p class="text-center mb-5">
-            Renewed Muslim Faith Foundation (RMFF) is a heartfelt, faith-driven humanitarian and community development organization, deeply committed to serving the most vulnerable individuals and families with boundless compassion, unwavering dignity, profound integrity, and genuine love rooted in the timeless teachings of Islam.
+            Renewed Muslim Faith Foundation is a heartfelt, faith-driven humanitarian and community development organization, deeply committed to serving the most vulnerable individuals and families with boundless compassion, unwavering dignity, profound integrity, and genuine love rooted in the timeless teachings of Islam.
         </p>
         <div class="row g-4">
             <div class="col-md-6">
@@ -157,7 +157,7 @@ Youth empowerment initiatives — Wrapping our young ones in love, purpose, and 
 <section class="about-how-we-work py-5 bg-light">
     <div class="container">
         <h3 class="fw-bold text-center mb-4">How We Work & Our Commitment</h3>
-        <p class="text-center mb-5">At Renewed Muslim Faith Foundation (RMFF), we embrace a compassionate, balanced path that touches every layer of human need delivering immediate relief to ease urgent suffering, building sustainable empowerment to restore dignity and independence, and nurturing spiritual strengthening to deepen faith, heal hearts, and foster unbreakable emotional resilience. Guided by Islamic principles, we ensure every act of kindness revives hope, mends broken spirits, and lights the way toward a brighter, more faithful tomorrow.</p>
+        <p class="text-center mb-5">At Renewed Muslim Faith Foundation, we embrace a compassionate, balanced path that touches every layer of human need delivering immediate relief to ease urgent suffering, building sustainable empowerment to restore dignity and independence, and nurturing spiritual strengthening to deepen faith, heal hearts, and foster unbreakable emotional resilience. Guided by Islamic principles, we ensure every act of kindness revives hope, mends broken spirits, and lights the way toward a brighter, more faithful tomorrow.</p>
         <div class="row g-4">
             <div class="col-md-6">
                 <h5>Our Holistic Approach</h5>
@@ -181,7 +181,7 @@ Needs Assessment with Local Leaders We listen deeply to community voices, elders
 <section class="about-partnerships py-5">
     <div class="container">
         <h3 class="fw-bold text-center mb-4">Partnerships, Support & Impact</h3>
-        <p class="text-center mb-5">At Renewed Muslim Faith Foundation (RMFF), we believe true change blooms through unity and shared hearts. We warmly partner with dedicated community organizations, respected Islamic scholars, passionate volunteers, and ethical like-minded allies to amplify our reach, deepen our roots, and build stronger, more resilient communities. Together, we weave a beautiful tapestry of compassion combining knowledge, resources, and sincere intentions to serve humanity with greater love, efficiency, and lasting barakah.</p>
+        <p class="text-center mb-5">At Renewed Muslim Faith Foundation, we believe true change blooms through unity and shared hearts. We warmly partner with dedicated community organizations, respected Islamic scholars, passionate volunteers, and ethical like-minded allies to amplify our reach, deepen our roots, and build stronger, more resilient communities. Together, we weave a beautiful tapestry of compassion combining knowledge, resources, and sincere intentions to serve humanity with greater love, efficiency, and lasting barakah.</p>
         <div class="row g-4">
             <div class="col-md-6">
                 <h5>Ways to Support RMFF</h5>
@@ -216,7 +216,7 @@ A hungry child curling up at night with an empty stomach and tear-streaked cheek
 A weary mother clutching her child, wondering how she will provide tomorrow's meal.
 A father bowing in sujood, pleading with his Lord, "Ya Allah, how will we survive?"
 These cries may never make headlines or reach distant ears, but they never go unheard by the Most Merciful. And sometimes, in His infinite wisdom, Allah answers them through ordinary people moved by extraordinary iman people like you, like us.
-Renewed Muslim Faith Foundation (RMFF) was born from this profound conviction: when even one part of the Ummah suffers, the entire body feels the pain. We are not separate; we are one family under Allah's care. The hunger of a child in Lagos, the loneliness of a widow in the north, the uncertainty of an orphan these are our shared burdens, our collective call to action.
+Renewed Muslim Faith Foundation was born from this profound conviction: when even one part of the Ummah suffers, the entire body feels the pain. We are not separate; we are one family under Allah's care. The hunger of a child in Lagos, the loneliness of a widow in the north, the uncertainty of an orphan these are our shared burdens, our collective call to action.
 We carry your Zakat, your Sadaqah, your heartfelt dua, and your sincere intentions directly to those teetering on the edge of despair. We remind them, with gentle hands and open hearts: You are not forgotten. Allah sees you. And so do we.
 We do more than deliver food, water, or shelter.
 We restore shattered dignity with respect and honor.

@@ -116,7 +116,7 @@
 }
 
 .btn-primary {
-    background: #0d6efd;
+    background: #6f42c1;
     border: none;
     border-radius: 12px;
     padding: 10px 30px;
@@ -125,7 +125,7 @@
 }
 
 .btn-primary:hover {
-    background: #0b5ed7;
+    background: #5d36b4;
     transform: translateY(-2px);
 }
 

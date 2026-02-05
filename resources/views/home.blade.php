@@ -12,7 +12,7 @@
         <p class="lead text-light">Continue exploring programs and opportunities tailored for you.</p>
         <a href="/profile" class="btn btn-outline-light mt-3">Go to Profile</a>
         @else
-        <h1 class="fw-bold text-white">Renewed Muslim Faith Foundation (RMFF)</h1>
+        <h1 class="fw-bold text-white">Renewed Muslim Faith Foundation</h1>
         <p class="lead text-light">Renewing Faith. Restoring Hope. Transforming Lives.</p>
         <div class="mt-4">
             <a href="/donation" class="btn btn-light me-2">Donate Now</a>
@@ -117,127 +117,6 @@ Our work is an amanah: transparent, accountable, and eternally oriented serving 
     </div>
 </section>
 
-
-<!-- CONTRIBUTORS SECTION -->
-<section class="contributors-section py-5">
-    <div class="container">
-        <h2 class="text-center mb-5 fw-bold">Our Leadership Team</h2>
-
-        <div class="contributors-slider-wrapper position-relative">
-            <button class="contributors-slider-btn left" onclick="slideContributorsLeft()">
-                <i class="bi bi-chevron-left"></i>
-            </button>
-
-            <div class="contributors-slider-container">
-                <div class="contributors-slider-track" id="contributorsTrack">
-                    <!-- Contributor 1 -->
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/lawal.jpg") }}" alt="Founder" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Lawal Habiba</h5>
-                                <p class="contributor-role">Treasurer</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contributor 2 -->
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/founder.jpg") }}" alt="Co-Founder" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Founder and Chariman</h5>
-                                {{-- <p class="contributor-role">Founder and Chariman</p> --}}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contributor 3 -->
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/ibrahim.jpg") }}" alt="Trustee" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Ibrahim Mustapha Olasunkanmi</h5>
-                                <p class="contributor-role">Secretary</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contributor 4 -->
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/nimatallah.jpg") }}" alt="Manager" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Nimatallah Lawal</h5>
-                                <p class="contributor-role">Program Coordinator and Program Manager</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contributor 5 (additional) -->
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/ummu.jpg") }}" alt="Coordinator" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Ummu Salamah</h5>
-                                <p class="contributor-role">Operational Manager</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contributor 6 (additional) -->
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/shakirah.jpg") }}" alt="Advisor" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Shakirah Arinola Abdulrohim</h5>
-                                <p class="contributor-role">Volunteer Coordinator</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/ahmad.jpg") }}" alt="Advisor" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Ahmad Ishola Azeez</h5>
-                                <p class="contributor-role">Member and Adviser Barrister</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contributor-slide">
-                        <div class="contributor-card">
-                            <div class="contributor-image-wrapper">
-                                <img src="{{ asset("images/contributors/monitoring.jpg") }}" alt="Advisor" class="contributor-image">
-                            </div>
-                            <div class="contributor-info">
-                                <h5 class="contributor-name">Monitoring and Evaluation (M&E) Officer</h5>
-                                {{-- <p class="contributor-role">Monitoring and Evaluation (M&E) Officer</p> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="contributors-slider-btn right" onclick="slideContributorsRight()">
-                <i class="bi bi-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-</section>
 
 
 <section class="impact-section-- py-5 text-center">

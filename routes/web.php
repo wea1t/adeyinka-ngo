@@ -21,12 +21,7 @@ use Illuminate\Support\Facades\Artisan;
 // Home
 Route::view('/', 'home')->name('home');
 
-// Auth
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register.show');
-Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+// NOTE: registration and login routes removed to provide a simple public website
 
 // Donations
 Route::get('/donate', [DonationController::class, 'index'])->name('donate.form');
@@ -50,6 +45,14 @@ Route::view('/about-us', 'about-us')->name('about.us');
 
 // Privacy & Policy
 Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
+
+// Public informational pages requested for guest navigation
+Route::view('/who-we-are', 'who-we-are.overview')->name('who.we.are');
+Route::view('/what-we-do', 'what-we-do')->name('what.we.do');
+Route::view('/mentorship', 'mentorship')->name('mentorship');
+Route::view('/our-team', 'our-team')->name('our.team');
+Route::view('/our-impact', 'our-impact')->name('our.impact');
+Route::view('/matchmaking', 'matchmaking')->name('matchmaking');
 
 // Public NGO pages
 Route::get('/ngo', [NgoController::class, 'showForm'])->name('ngo.form'); // NGO submission form
@@ -81,13 +84,7 @@ Route::middleware('auth')->group(function () {
     // Other authenticated pages
     Route::view('/search', 'search')->name('search');
 
-    Route::prefix('who-we-are')->group(function () {
-        Route::view('/', 'who-we-are.overview')->name('who.we.are');
-        Route::view('/leaders', 'who-we-are.leaders')->name('leaders');
-        Route::view('/trustees', 'who-we-are.trustees')->name('trustees');
-    });
-
-    Route::view('/what-we-do', 'what-we-do')->name('what.we.do');
+    // (authenticated-only pages kept here if needed)
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
