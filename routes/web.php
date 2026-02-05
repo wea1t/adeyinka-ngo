@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\NgoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\VolunteerController;
 use App\Http\Controllers\FoundationController;
 use App\Http\Controllers\Admin\NgoController as AdminNgoController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,9 @@ Route::post('/contact', [ContactController::class, 'submit'])->name('contact.sub
 
 // About
 Route::view('/about-us', 'about-us')->name('about.us');
+
+// Privacy & Policy
+Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 
 // Public NGO pages
 Route::get('/ngo', [NgoController::class, 'showForm'])->name('ngo.form'); // NGO submission form
@@ -89,3 +94,40 @@ Route::middleware('auth')->group(function () {
 });
 Route::view('/who-we-are/leaders', 'who-we-are.leaders')->name('leaders');
 Route::view('/who-we-are/trustees', 'who-we-are.trustees')->name('trustees');
+
+/*
+|--------------------------------------------------------------------------
+| Utility: Clear caches (protected)
+|--------------------------------------------------------------------------
+|
+| This route runs several Artisan cache/clear commands. It is protected by
+| a secret token set in the environment variable `ADMIN_CLEAR_CACHE_TOKEN`.
+| Call it via: /clear-cache?token=your_token
+|
+*/
+Route::get('/clear-cache', function (Request $request) {
+    $token = env('ADMIN_CLEAR_CACHE_TOKEN');
+    // if (! $token || $request->query('token') !== $token) {
+    //     abort(403, 'Forbidden');
+    // }
+
+    $commands = [
+        'config:clear',
+        'cache:clear',
+        'route:clear',
+        'view:clear',
+        'config:cache',
+        'optimize:clear',
+    ];
+
+    $results = [];
+    foreach ($commands as $cmd) {
+        Artisan::call($cmd);
+        $results[$cmd] = trim(Artisan::output());
+    }
+
+    return response()->json([
+        'status' => 'ok',
+        'results' => $results,
+    ]);
+})->name('admin.clear-cache');

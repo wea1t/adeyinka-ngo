@@ -115,8 +115,9 @@
 <style>
 /* Profile Picture */
 .profile-pic {
-    width: 160px;
-    height: 160px;
+    width: 100%;
+    max-width: 160px;
+    height: auto;
     object-fit: cover;
     border: 4px solid #0d6efd;
 }

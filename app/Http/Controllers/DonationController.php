@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use App\Mail\DonationReceived;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class DonationController extends Controller
@@ -47,7 +48,7 @@ class DonationController extends Controller
 
         } catch (\Exception $e) {
             // Log the error for debugging
-            \Log::error('Donation Error: '.$e->getMessage());
+            Log::error('Donation Error: '.$e->getMessage());
 
             return redirect()->back()->with('error', 'Something went wrong. Please try again.');
         }

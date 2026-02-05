@@ -5,77 +5,82 @@
 @section('content')
 
 <!-- HERO SECTION -->
-<section class="hero-section mb-5">
-    <div class="hero-content text-center container py-5">
+<section class="hero-section d-flex align-items-center text-center">
+    <div class="container hero-content">
         @if(auth()->check())
-            <h1 class="fw-bold">Welcome back, {{ auth()->user()?->name }} 👋</h1>
-            <p class="lead">Continue exploring programs and opportunities tailored for you.</p>
-            <a href="/profile" class="btn btn-outline-light mt-3">Go to Profile</a>
+        <h1 class="fw-bold text-white">Welcome back, {{ auth()->user()?->name }} 👋</h1>
+        <p class="lead text-light">Continue exploring programs and opportunities tailored for you.</p>
+        <a href="/profile" class="btn btn-outline-light mt-3">Go to Profile</a>
         @else
-            <div class="guest-hero mx-auto" style="max-width:900px;">
-                <h1 class="fw-bold">Renewed Muslim Faith</h1>
-                <p class="lead">Empowering communities through compassion, education, and service.</p>
-                <div class="mt-3">
-                    <a href="/about-us" class="btn btn-light me-2">Learn More</a>
-                    <a href="/donation" class="btn btn-outline-light">Donate Now</a>
-                </div>
-            </div>
+        <h1 class="fw-bold text-white">Renewed Muslim Faith Foundation (RMFF)</h1>
+        <p class="lead text-light">Renewing Faith. Restoring Hope. Transforming Lives.</p>
+        <div class="mt-4">
+            <a href="/donation" class="btn btn-light me-2">Donate Now</a>
+            <a href="{{ route('contact.us') }}" class="btn btn-outline-light me-2">Seek Guidance</a>
+            <a href="/about-us" class="btn btn-outline-light">Discover Our Mission</a>
+        </div>
         @endif
     </div>
 </section>
 
-<!-- FEATURES SECTION -->
-<section class="features-section mb-5">
-    <h3 class="mb-4 text-center fw-bold">Our Features</h3>
-
-    <div class="row g-4">
-
-        <!-- NGO -->
-        <div class="col-md-3">
-            <div class="feature-card card h-100 text-center p-4">
-                <i class="bi bi-heart-pulse-fill text-danger feature-icon"></i>
-                <h5 class="mt-3">NGO Programs</h5>
-                <p class="text-muted">
-                    Humanitarian programs focused on care, relief, and community development.
-                </p>
+<!-- WHO WE ARE SECTION -->
+<section class="who-we-are-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h3 class="fw-bold mb-4">Who We Are – A Heartfelt Commitment</h3>
+                <p>We are a community-rooted organization driven by profound love for the Ummah and an unshakeable trust in Allah's mercy. With deep sincerity and professional integrity, we connect authentic Islamic faith with purposeful, life-affirming action addressing spiritual disconnection, emotional wounds, family challenges, and the silent struggles of widows, orphans, youth, and vulnerable communities.
+Our work is an amanah: transparent, accountable, and eternally oriented serving solely for Allah's pleasure, to bring light where shadows linger and hope where despair once dwelled.</p>
+                <a href="/about-us" class="btn btn-outline-primary mt-3">Read More</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{{ asset('images/home/whoweare.jpeg') }}" class="img-fluid rounded shadow" alt="Who We Are">
             </div>
         </div>
-
-        <!-- Matchmaking -->
-        <div class="col-md-3">
-            <div class="feature-card card h-100 text-center p-4">
-                <i class="bi bi-people-fill text-primary feature-icon"></i>
-                <h5 class="mt-3">Matchmaking</h5>
-                <p class="text-muted">
-                    Find compatible members based on shared values and goals.
-                </p>
-            </div>
-        </div>
-
-        <!-- Education -->
-        <div class="col-md-3">
-            <div class="feature-card card h-100 text-center p-4">
-                <i class="bi bi-mortarboard-fill text-warning feature-icon"></i>
-                <h5 class="mt-3">Education</h5>
-                <p class="text-muted">
-                    Learning programs that empower individuals through knowledge.
-                </p>
-            </div>
-        </div>
-
-        <!-- Volunteer -->
-        <div class="col-md-3">
-            <div class="feature-card card h-100 text-center p-4">
-                <i class="bi bi-hand-thumbs-up-fill text-success feature-icon"></i>
-                <h5 class="mt-3">Volunteer</h5>
-                <p class="text-muted">
-                    Serve humanity by joining impactful volunteer initiatives.
-                </p>
-            </div>
-        </div>
-
     </div>
 </section>
+
+
+
+<!-- WHAT WE DO -->
+<section class="what-we-do-section py-5 bg-light">
+    <div class="container">
+        <h3 class="fw-bold text-center mb-4">What We Do – Pillars of Compassionate Service</h3>
+        <div class="row g-4">
+            <div class="col-md-4 service-card">
+                <img src="{{ asset('images/home/education.jpeg') }}" class="img-fluid rounded mb-3" alt="Education">
+                <h5>Islamic Education & Da‘wah</h5>
+                <p>Islamic Education & Da‘wah  Igniting hearts with the Qur’an’s healing words and the Prophet’s (PBUH) beautiful example, fostering deeper iman and joyful remembrance.</p>
+            </div>
+            <div class="col-md-4 service-card">
+                <img src="{{ asset('images/home/mentorship.jpeg') }}" class="img-fluid rounded mb-3" alt="Mentorship">
+                <h5>Mentorship & Counseling</h5>
+                <p>Offering safe, confidential spaces for emotional healing, spiritual renewal, and guidance that mends broken hearts and strengthens resilient spirits.</p>
+            </div>
+            <div class="col-md-4 service-card">
+                <img src="{{ asset('images/home/empowerment.jpeg') }}" class="img-fluid rounded mb-3" alt="Youth Empowerment">
+                <h5>Youth and Community Empowerment</h5>
+                <p> Nurturing our young with faith, purpose, skills, and loving support to rise as confident leaders grounded in deen.</p>
+            </div>
+            <div class="col-md-4 service-card">
+                <img src="{{ asset('images/home/humanitarian1.jpeg') }}" class="img-fluid rounded mb-3" alt="Humanitarian">
+                <h5>Humanitarian Support</h5>
+                <p>Delivering urgent relief, sustainable aid, and dignified care to those in hardship feeding the hungry, sheltering the vulnerable, and restoring hope with mercy in motion.</p>
+            </div>
+            <div class="col-md-4 service-card">
+                <img src="{{ asset('images/home/matchmaking.jpeg') }}" class="img-fluid rounded mb-3" alt="Matchmaking">
+                <h5>Ethical Matchmaking Services</h5>
+                <p>Facilitating halal, respectful unions rooted in shared faith, values, and mutual respect building homes of sakeenah, love, and barakah.</p>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ route('about.us') }}" class="btn btn-outline-success">Explore Our Programs</a>
+        </div>
+    </div>
+</section>
+
+
+
 
 
 <!-- IMPACT IMAGE SECTION -->
@@ -93,30 +98,6 @@
                 uplifting individuals through support systems, resources, and collective action.
             </p>
         </div>
-    </div>
-</section>
-
-<!-- IMAGE SLIDER SECTION -->
-<section class="gallery-section">
-    <h3 class="text-center mb-4 fw-bold">Our Activities</h3>
-
-    <div class="slider-container">
-        <button class="slider-btn left" onclick="slideLeft()">&#10094;</button>
-
-        <div class="slider-track" id="sliderTrack">
-            <img src="/images/pic2.jpg" alt="">
-            <img src="/images/pic3.jpg" alt="">
-            <img src="/images/pic4.jpg" alt="">
-            <img src="/images/pic5.jpg" alt="">
-            <img src="/images/pic6.jpg" alt="">
-            <img src="/images/pic7.jpg" alt="">
-            <img src="/images/pic8.jpg" alt="">
-            <img src="/images/pic9.jpg" alt="">
-            <img src="/images/pic10.jpg" alt="">
-            <img src="/images/pic11.jpg" alt="">
-        </div>
-
-        <button class="slider-btn right" onclick="slideRight()">&#10095;</button>
     </div>
 </section>
 
@@ -259,53 +240,42 @@
 </section>
 
 
-<section class="donate-section">
-    <h2 class="donate-title">Donate</h2>
-    <p class="donate-intro">
-        Your generous contributions play a vital role in supporting the mission of the
-        Renewed Muslim Faith Support Initiative (RMF). Donations help us provide essential programs
-        and resources that empower individuals and communities.
+<section class="impact-section-- py-5 text-center">
+    <h3 class="fw-bold">Our Impact – Lives Touched, Hearts Healed</h3>
+    <ul class="list-unstyled mt-3">
+        <li>Restore hope to weary families</li>
+        <li>Guide youth toward purposeful futures</li>
+        <li>Heal emotional and spiritual wounds</li>
+        <li>Empower widows and shelter orphans</li>
+        <li>Unite souls in righteous marriage</li>
+    </ul>
+    <p class="mt-3">
+        <strong>Account Number:</strong> 0013741243 <br>
+        <strong>Account Name:</strong> Renewed Muslim Faith Foundation
     </p>
-
-    <div class="donate-cards">
-
-        <div class="donate-card">
-            <i class="bi bi-credit-card-fill donate-icon"></i>
-            <h3>Online Donations</h3>
-            <p>
-                Click on the donate button on our website to make a secure online donation
-                using your bank transfer payment app. Every contribution, big or small, makes a difference.
-            </p>
-        </div>
-
-        <div class="donate-card">
-            <i class="bi bi-calendar-check-fill donate-icon"></i>
-            <h3>Monthly Giving</h3>
-            <p>
-                Consider becoming a monthly donor. Regular contributions help us plan and sustain
-                our initiatives over time, ensuring ongoing support for the community.
-            </p>
-        </div>
-
-        <div class="donate-card">
-            <i class="bi bi-gift-fill donate-icon"></i>
-            <h3>In-Kind Donations</h3>
-            <p>
-                We welcome in-kind donations such as educational materials, clothing, or supplies
-                for our programs. Contact us to learn about our current needs.
-            </p>
-        </div>
-
-        <div class="donate-card">
-            <i class="bi bi-people-fill donate-icon"></i>
-            <h3>Sponsorship Opportunities</h3>
-            <p>
-                Explore various sponsorship opportunities for specific programs or events.
-                Sponsoring a workshop or initiative can have a profound impact on participants’ lives.
-            </p>
-        </div>
-
-    </div>
+    <a href="/donation" class="btn btn-danger">Donate Now – Let Your Heart Lead</a>
 </section>
+
+
+<section class="get-involved-section py-5 bg-light text-center">
+    <h3 class="fw-bold">Get Involved – Your Place in This Noble Mission</h3>
+    <p>Lend your time as a volunteer, partner with us in service, or sustain our programs...</p>
+    <a href="{{ route('contact.us') }}" class="btn btn-primary">Join Us Today</a>
+</section>
+
+
+<section class="closing-message py-5 text-center">
+    <p>
+        At Renewed Muslim Faith Foundation, we hold firmly to the belief that when sincere faith is nurtured,
+        when hearts are met with genuine mercy, and when generosity flows freely for Allah's sake,
+        profound and lasting transformation becomes not just possible but inevitable.
+    </p>
+    <p>
+        Join us in this sacred journey. Be the mercy someone is praying for. Let your contribution become a light in the darkness,
+        a comfort to the afflicted, and a path to Allah's boundless pleasure.
+    </p>
+    <p><em>May Allah accept our efforts, multiply our rewards, and unite our hearts in His service. Ameen. 🌿</em></p>
+</section>
+
 
 @endsection

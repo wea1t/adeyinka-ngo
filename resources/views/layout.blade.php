@@ -3,7 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') | Renewed Muslim Faith</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ asset('favicon.svg') }}">
+    <meta name="theme-color" content="#6f42c1">
 
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -33,23 +39,25 @@
         /* ===== SIDEBAR ===== */
         .sidebar {
             width: 240px;
-            background: #0d6efd;
+            background: #6f42c1;
             color: #fff;
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
             padding-top: 20px;
+            padding-bottom: 120px; /* leave space for fixed logout */
             display: flex;
             flex-direction: column;
-            z-index: 1000;
+            z-index: 1115;
         }
 
         .sidebar a {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 20px;
+            padding: 10px 14px;
+            font-size: 0.95rem;
             color: #fff;
             text-decoration: none;
             font-weight: 500;
@@ -63,6 +71,15 @@
             font-size: 1.2rem;
         }
 
+        /* fixed logout area inside sidebar so it's always reachable */
+        .logout-fixed {
+            position: absolute;
+            bottom: 16px;
+            left: 12px;
+            right: 12px;
+            z-index: 1120;
+        }
+
         /* ===== MAIN CONTENT ===== */
         .main-content {
             margin-left: 240px;
@@ -72,7 +89,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, #0d6efd, #20c997);
+            background: linear-gradient(135deg, #6f42c1, #20c997);
             color: #fff;
             padding: 60px 30px;
             text-align: center;
@@ -108,7 +125,7 @@
         .feature-card i {
             font-size: 2rem;
             margin-bottom: 10px;
-            color: #0d6efd;
+            color: #6f42c1;
         }
 
         /* ===== COOKIE BANNER ===== */
@@ -153,9 +170,42 @@
             background: #e5e7eb;
         }
 
+        /* Cookie - mobile adjustments */
+        @media (max-width: 480px) {
+            .cookie-consent {
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                bottom: 0 !important;
+                width: 100% !important;
+                max-width: none !important;
+                border-radius: 0 !important;
+                padding: 12px !important;
+                box-shadow: none !important;
+            }
+
+            .cookie-consent p {
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .cookie-buttons {
+                flex-direction: column;
+                gap: 8px;
+                justify-content: center;
+                align-items: stretch;
+                margin-top: 6px;
+            }
+
+            .cookie-buttons button {
+                width: 100%;
+                padding: 10px 12px;
+            }
+        }
+
         /* ===== FOOTER (FIXED & CLEAN) ===== */
         .site-footer {
-            background-color: #0d6efd;
+            background: linear-gradient(135deg, #6f42c1, #20c997);
             color: #ffffff;
             padding: 25px 15px;
         }
@@ -178,9 +228,13 @@
         }
 
         .footer-links a {
-            color: #ffc107;
+            color: rgba(255,255,255,0.95);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        .footer-links a.accent {
+            color: #20c997;
         }
 
         .footer-links span {
@@ -200,18 +254,82 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            /* Sidebar becomes off-canvas on small screens */
             .sidebar {
-                width: 70px;
+                left: -240px;
+                width: 240px;
+                transition: left 0.28s ease;
+                max-height: 100vh;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 20px;
             }
 
+            /* Hide text labels when sidebar is closed */
             .sidebar span {
                 display: none;
             }
 
+            /* Show labels when open */
+            .sidebar.open span {
+                display: inline-block;
+                margin-left: 10px;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            /* Main content should not reserve left space on small screens */
             .main-content {
-                margin-left: 70px;
-                width: calc(100% - 70px);
+                margin-left: 0;
+                width: 100%;
                 padding: 20px;
+            }
+
+            /* Mobile header inside main content */
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .mobile-header .mobile-sidebar-toggle {
+                background: #0d6efd;
+                border: none;
+                color: #fff;
+                width: 44px;
+                height: 44px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 6px 18px rgba(13,110,253,0.12);
+            }
+
+            .mobile-logo {
+                height: 36px;
+                width: auto;
+                display: block;
+            }
+
+            /* Backdrop for off-canvas sidebar */
+            .mobile-backdrop {
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.45);
+                z-index: 1110;
+                display: none;
+            }
+
+            .mobile-backdrop.active {
+                display: block;
+            }
+
+            /* ensure toggle is above backdrop */
+            .mobile-header .mobile-sidebar-toggle {
+                z-index: 100;
             }
         }
         /* Guest pages should not reserve space for the sidebar */
@@ -235,7 +353,7 @@
 
         .guest-navbar .navbar-brand {
             font-weight: 700;
-            color: #0d6efd;
+            color: #6f42c1;
         }
 
         .guest-navbar .nav-link {
@@ -249,14 +367,14 @@
         }
 
         .guest-navbar .btn-primary {
-            background: #0d6efd;
-            border-color: #0d6efd;
-            box-shadow: 0 6px 18px rgba(13,110,253,0.12);
+            background: #6f42c1;
+            border-color: #6f42c1;
+            box-shadow: 0 6px 18px rgba(111,66,193,0.12);
         }
 
         /* Guest hero - separate from dashboard hero styles */
         .guest-hero {
-            background: linear-gradient(135deg, #0d6efd, #20c997);
+            background: linear-gradient(135deg, #6f42c1, #20c997);
             color: #fff;
             padding: 48px 30px;
             border-radius: 12px;
@@ -266,6 +384,23 @@
         .guest-hero .btn-outline-light {
             color: #0d6efd;
             background: rgba(255,255,255,0.95);
+        }
+
+        /* Guest hero buttons - stack on small screens */
+        .guest-hero .btn {
+            min-width: 140px;
+        }
+
+        @media (max-width: 576px) {
+            .guest-hero {
+                padding: 28px 18px;
+            }
+
+            .guest-hero .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 10px;
+            }
         }
 
         /* ===== CONTRIBUTORS SECTION ===== */
@@ -313,7 +448,7 @@
 
         .contributor-role {
             font-size: 0.95rem;
-            color: #0d6efd;
+            color: #6f42c1;
             font-weight: 500;
             margin: 0;
         }
@@ -406,49 +541,68 @@
 
         @php $isAuth = auth()->check(); @endphp
 
+        {{-- mobile toggle removed from here; it's rendered inside main content to avoid left spacing --}}
+
         <!-- SIDEBAR (only for authenticated/dashboard users) -->
         @if($isAuth)
         <aside class="sidebar">
-            <a href="/"><i class="bi bi-house-fill"></i><span>Home</span></a>
-            <a href="/about-us"><i class="bi bi-info-circle"></i><span>About</span></a>
-            <a href="/what-we-do"><i class="bi bi-lightbulb-fill"></i><span>What We Do</span></a>
-            <a href="/donation"><i class="bi bi-cash-stack"></i><span>Donate</span></a>
-            <a href="/ngo"><i class="bi bi-heart-fill"></i><span>NGOs</span></a>
-            <a href="/foundation"><i class="bi bi-building"></i><span>Foundation</span></a>
-            <a href="/profile"><i class="bi bi-person-circle"></i><span>Profile</span></a>
-            <a href="/search"><i class="bi bi-search"></i><span>Search</span></a>
-            <a href="/contact-us"><i class="bi bi-envelope-fill"></i><span>Contact</span></a>
+            <div class="sidebar-brand p-3 d-flex align-items-center gap-2">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="height:36px;width:auto"> 
+                <strong style="color:#fff">{{ config('app.name', 'Renewed Muslim Faith') }}</strong>
+            </div>
+            <a href="{{ route('home') }}"><i class="bi bi-house-fill"></i><span>Home</span></a>
+            <a href="{{ route('about.us') }}"><i class="bi bi-info-circle"></i><span>About</span></a>
+            <a href="{{ route('what.we.do') }}"><i class="bi bi-lightbulb-fill"></i><span>What We Do</span></a>
+            <a href="{{ route('donate.form') }}"><i class="bi bi-cash-stack"></i><span>Donate</span></a>
+
+            <div class="sidebar-dropdown">
+                <a class="dropdown-toggle-custom" href="#"><i class="bi bi-building"></i><span>Organizations</span></a>
+                <div class="dropdown-menu-custom">
+                    <a href="{{ route('ngo.form') }}"><i class="bi bi-heart-fill"></i> NGOs</a>
+                    <a href="{{ route('foundation') }}"><i class="bi bi-bank2"></i> Foundation</a>
+                </div>
+            </div>
+
+            <a href="{{ route('profile.show') }}"><i class="bi bi-person-circle"></i><span>Profile</span></a>
+            <a href="{{ route('search') }}"><i class="bi bi-search"></i><span>Search</span></a>
+            <a href="{{ route('contact.us') }}"><i class="bi bi-envelope-fill"></i><span>Contact</span></a>
 
             @if (auth()->user()?->name)
-                <form method="POST" action="/logout" class="mt-auto p-3">
-                    @csrf
-                    <button type="submit" class="btn btn-light w-100">
-                        <i class="bi bi-box-arrow-right me-1"></i><span>Logout</span>
-                    </button>
-                </form>
+                <div class="logout-fixed">
+                    <form method="POST" action="/logout">
+                        @csrf
+                        <button type="submit" class="btn btn-light w-100">
+                            <i class="bi bi-box-arrow-right me-1"></i><span>Logout</span>
+                        </button>
+                    </form>
+                </div>
             @endif
         </aside>
+        <div id="mobileSidebarBackdrop" class="mobile-backdrop d-lg-none"></div>
         @endif
 
         <!-- TOP NAV (for guests) -->
         @if(! $isAuth)
         <nav class="navbar guest-navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">{{ config('app.name', 'Renewed Muslim Faith') }}</a>
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="height:28px;width:auto;margin-right:8px"> 
+                    <span>{{ config('app.name', 'Renewed Muslim Faith') }}</span>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="topNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about-us">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/contact-us">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/donation">Donate</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/ngo">NGOs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('about.us') }}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('contact.us') }}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('donate.form') }}">Donate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('ngo.form') }}">NGOs</a></li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                        <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2" href="/register">Get Started</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2" href="{{ route('register.show') }}">Get Started</a></li>
                     </ul>
                 </div>
             </div>
@@ -457,6 +611,16 @@
 
         <!-- MAIN CONTENT -->
         <main class="main-content {{ $isAuth ? '' : 'guest' }}">
+
+            @if($isAuth)
+            <div class="mobile-header d-lg-none">
+                <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Open navigation">
+                    <i class="bi bi-list" style="font-size:1.25rem;color:#fff"></i>
+                </button>
+                <img src="{{ asset('images/logo-demo.png') }}" alt="Logo" class="mobile-logo">
+            </div>
+            @endif
+
             @yield('content')
 
             <footer class="site-footer">
@@ -490,7 +654,7 @@
     <div id="cookieConsent" class="cookie-consent">
         <p>
             We use cookies to ensure you get the best experience.
-            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="{{ route('privacy.policy') }}">Privacy Policy</a>
         </p>
         <div class="cookie-buttons">
             <button id="acceptCookies">Accept</button>
@@ -575,6 +739,42 @@
                 contributorsTrack.style.transform = `translateX(-${contributorsIndex * slideWidth}px)`;
             }
         }
+
+        // Mobile sidebar toggle for authenticated users (off-canvas with backdrop)
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('mobileSidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.getElementById('mobileSidebarBackdrop');
+
+            if (toggle && sidebar) {
+                function openSidebar() {
+                    sidebar.classList.add('open');
+                    if (backdrop) backdrop.classList.add('active');
+                }
+
+                function closeSidebar() {
+                    sidebar.classList.remove('open');
+                    if (backdrop) backdrop.classList.remove('active');
+                }
+
+                toggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (sidebar.classList.contains('open')) closeSidebar();
+                    else openSidebar();
+                });
+
+                if (backdrop) {
+                    backdrop.addEventListener('click', function () {
+                        closeSidebar();
+                    });
+                }
+
+                // Close on Escape key
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') closeSidebar();
+                });
+            }
+        });
     </script>
 
 </body>
